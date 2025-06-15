@@ -8,12 +8,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    allowedHosts: [
-      "monday-charming-younger-august.trycloudflare.com",
-      "localhost",
-      ".trycloudflare.com"
-    ],
-    // No proxy needed - frontend will use VITE_API_URL directly
   },
   plugins: [
     react(),
@@ -25,9 +19,9 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Define environment variables for build
-  define: {
-    __API_URL__: JSON.stringify(process.env.VITE_API_URL || 'http://localhost:3000'),
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
   },
 }));
 

@@ -38,13 +38,23 @@ echo. >> "Frontend\.env"
 echo # QR Service URL (Python service - Port 5001) >> "Frontend\.env"
 echo VITE_QR_SERVICE_URL=%QR_URL% >> "Frontend\.env"
 
+:: Also update .env.production for Vercel
+echo # Production Environment Variables > "Frontend\.env.production"
+echo # These will be overridden by Vercel environment variables >> "Frontend\.env.production"
+echo. >> "Frontend\.env.production"
+echo # Main API URL (Node.js service - Port 3000) >> "Frontend\.env.production"
+echo VITE_API_URL=%API_URL% >> "Frontend\.env.production"
+echo. >> "Frontend\.env.production"
+echo # QR Service URL (Python service - Port 5001) >> "Frontend\.env.production"
+echo VITE_QR_SERVICE_URL=%QR_URL% >> "Frontend\.env.production"
+
 echo ✓ Updated .env file with:
 echo   - API URL: %API_URL%
 echo   - QR Service URL: %QR_URL%
 echo.
 
 echo Pushing to GitHub...
-git add Frontend/.env
+git add Frontend/.env Frontend/.env.production vercel.json
 git commit -m "Update service URLs: API=%API_URL%, QR=%QR_URL%"
 git push
 
